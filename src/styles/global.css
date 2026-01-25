@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tu paleta original */
+  --color-brand-dark: #05668d;
+  --color-brand-primary: #028090;
+  --color-brand-secondary: #00a896;
+  --color-brand-accent: #02c39a;
+  --color-brand-light: #f0f3bd;
+
+  /* Fondo y texto por defecto (Modo Light) */
+  --color-background: var(--color-brand-light);
+  --color-text-base: var(--color-brand-dark);
+}
+
+/* Configuramos el comportamiento del Dark Mode */
+@variant dark (&:where(.dark, .dark *));
+
+/* Sobrescribimos las variables cuando existe la clase .dark */
+.dark {
+  --color-background: #01161e; /* Un azul casi negro para el fondo */
+  --color-text-base: var(--color-brand-light);
+  --color-brand-dark: #0a84b1; /* Aclaramos un poco el azul oscuro para que se vea */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-base);
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+  
+  /* Transición suave para el cambio de modo */
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  
+  /* Aseguramos que ocupe toda la pantalla */
+  min-height: 100vh;
+}
+
+/* Tus animaciones */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

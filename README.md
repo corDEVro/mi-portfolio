@@ -1,43 +1,38 @@
-# Astro Starter Kit: Minimal
+# 🌊 Mi Portfolio Personal
 
-```sh
-npm create astro@latest -- --template minimal
-```
+¡Bienvenido! Este es el código fuente de mi portfolio profesional. Construido con un enfoque en la velocidad, el diseño limpio y una experiencia de usuario fluida tanto en modo claro como oscuro.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🎨 Paleta de Colores
 
-## 🚀 Project Structure
+He utilizado una paleta inspirada en tonos oceánicos para transmitir profesionalidad y calma:
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Brand Dark:** `#05668d` (Azul Profundo)
+- **Brand Primary:** `#028090` (Cian Oscuro)
+- **Brand Accent:** `#02c39a` (Verde Agua)
+- **Brand Light:** `#f0f3bd` (Crema Suave)
+
+## 🚀 Tecnologías
+
+![Astro](https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+## ✨ Características Principales
+
+- **🌓 Dark Mode Pro:** Cambio de tema suave con persistencia en `localStorage` y animación de rotación en el icono.
+- **📱 Totalmente Responsive:** Diseño adaptado para móviles, tablets y escritorio con un menú hamburguesa personalizado.
+- **🚀 Rendimiento Extra:** Construido con **Astro 5.0** para lograr una carga casi instantánea.
+- **🎨 Glassmorphism:** Navegación con efecto de desenfoque de fondo al hacer scroll.
+- **🛠️ Stack Dinámico:** Sección de habilidades que utiliza imágenes SVG oficiales de DevIcons.
+
+## 📦 Estructura del Proyecto
 
 ```text
 /
-├── public/
+├── public/              # Imágenes estáticas y Logo
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/      # Componentes modulares (Nav, Stacks, Social...)
+│   ├── layouts/         # Plantilla base del sitio
+│   └── pages/           # Páginas principales (index.astro)
+└── tailwind.config.mjs  # Configuración de diseño (v4 Ready)
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

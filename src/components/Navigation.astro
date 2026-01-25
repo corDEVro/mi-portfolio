@@ -1,0 +1,208 @@
+---
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "About me", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Stacks", href: "#stacks" },
+  { name: "Contact", href: "#contact" },
+];
+---
+
+<nav class="fixed top-0 left-0 w-full z-50 py-4 px-6">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex-1">
+      <a
+        href="#home"
+        class="text-2xl font-black text-brand-dark hover:text-brand-primary transition-colors"
+      >
+        LOGO<span class="text-brand-accent">.</span>
+      </a>
+    </div>
+
+    <ul
+      class="nav-desktop hidden bg-brand-dark/90 backdrop-blur-md px-2 py-1.5 rounded-full border border-brand-primary/20 shadow-lg shrink-0"
+    >
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block px-5 py-2 text-sm font-medium text-brand-light hover:bg-brand-primary rounded-full transition-all duration-300 whitespace-nowrap"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="nav-mobile flex justify-center flex-1">
+      <button
+        id="menu-toggle"
+        class="bg-brand-dark text-brand-light px-6 py-2 rounded-full font-bold text-sm border border-brand-primary/30 hover:bg-brand-primary transition-all shadow-md"
+      >
+        MENÚ
+      </button>
+    </div>
+
+    <div class="flex-1 flex justify-end items-center gap-2 sm:gap-3">
+      <button
+        class="text-[10px] sm:text-xs font-bold border-2 border-brand-primary text-brand-primary px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md hover:bg-brand-primary hover:text-brand-light transition-all shrink-0"
+      >
+        EN/ES
+      </button>
+
+      <button
+        id="theme-toggle"
+        class="relative p-1.5 sm:p-2 text-brand-dark dark:text-brand-light hover:bg-brand-primary/10 rounded-full transition-all shrink-0 cursor-pointer overflow-hidden"
+        aria-label="Toggle Dark Mode"
+      >
+        <svg
+          id="moon-icon"
+          class="block dark:hidden transition-transform duration-500 rotate-0 dark:-rotate-90"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+
+        <svg
+          id="sun-icon"
+          class="hidden dark:block transition-transform duration-500 rotate-90 dark:rotate-0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path><path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"
+          ></path>
+          <path d="M2 12h2"></path><path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"
+          ></path>
+        </svg>
+      </button>
+
+      <a
+        href="https://t.me/tu_usuario"
+        target="_blank"
+        class="bg-brand-accent text-brand-dark p-1.5 sm:p-2 rounded-full hover:scale-110 transition-transform shadow-md shrink-0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          class="sm:w-5 sm:h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"
+          ></path></svg
+        >
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div
+  id="mobile-menu"
+  class="hidden fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm bg-brand-dark/95 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-brand-primary/20 z-60"
+>
+  <ul class="flex flex-col gap-2">
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="mobile-link block text-center py-3 text-brand-light font-medium hover:bg-brand-primary rounded-xl transition-colors"
+          >
+            {item.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  /* Por defecto (móvil), ocultamos el menú largo y mostramos el botón */
+  .nav-desktop {
+    display: none;
+  }
+  .nav-mobile {
+    display: flex;
+  }
+
+  /* Cuando la pantalla es lo bastante ancha para que no choquen (aprox 1100px) */
+  @media (min-width: 800px) {
+    .nav-desktop {
+      display: flex;
+    }
+    .nav-mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // (Misma lógica de JS para el toggle)
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  menuToggle?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+    });
+  });
+
+  const themeToggle = document.getElementById("theme-toggle");
+
+  // Función para aplicar el tema
+  const applyTheme = () => {
+    const theme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
+  // Ejecutar al cargar
+  applyTheme();
+
+  // Escuchar el clic
+  themeToggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    // Añadimos una pequeña escala al pulsar para feedback táctil
+    themeToggle.style.transform = "scale(0.8)";
+    setTimeout(() => (themeToggle.style.transform = "scale(1)"), 100);
+  });
+</script>

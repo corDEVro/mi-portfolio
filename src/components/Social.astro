@@ -1,0 +1,43 @@
+---
+const networks = [
+  {
+    name: "GitHub",
+    url: "#",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  },
+  {
+    name: "LinkedIn",
+    url: "#",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
+  },
+  {
+    name: "Instagram",
+    url: "#",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg",
+  },
+  {
+    name: "X",
+    url: "#",
+    logo: "https://about.x.com/content/dam/about-twitter/x/brand-toolkit/logo-black.png.twimg.1920.png",
+  },
+];
+---
+
+<div class="flex gap-6 items-center">
+  {
+    networks.map((net) => (
+      <a
+        href={net.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-8 h-8 transition-transform hover:scale-125 duration-300"
+      >
+        <img
+          src={net.logo}
+          alt={net.name}
+          class="w-full h-full object-contain"
+        />
+      </a>
+    ))
+  }
+</div>

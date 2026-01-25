@@ -1,0 +1,140 @@
+---
+import Card from "./Card.astro";
+
+const projects = [
+  { title: "Proyecto 1", desc: "Descripción...", tags: ["Astro"] },
+  { title: "Proyecto 2", desc: "Descripción...", tags: ["JS"] },
+  { title: "Proyecto 3", desc: "Descripción...", tags: ["React"] },
+  { title: "Proyecto 4", desc: "Descripción...", tags: ["Tailwind"] },
+  { title: "Proyecto 5", desc: "Descripción...", tags: ["CSS"] },
+];
+---
+
+<section id="projects" class="py-24 overflow-hidden">
+  <h2 class="text-4xl font-black text-brand-dark mb-16 text-center">
+    Proyectos <span class="text-brand-secondary">destacados</span>
+  </h2>
+
+  <div class="relative max-w-6xl mx-auto px-4">
+    <div
+      id="carousel-viewport"
+      class="relative flex items-center justify-center h-137.5"
+    >
+      <button
+        id="prev-btn"
+        class="absolute left-0 z-30 p-4 bg-brand-dark text-white rounded-full shadow-xl hover:bg-brand-primary transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"><path d="m15 18-6-6 6-6"></path></svg
+        >
+      </button>
+
+      <div
+        id="project-track"
+        class="relative w-full h-full flex items-center justify-center"
+      >
+        {
+          projects.map((p, index) => (
+            <Card title={p.title} desc={p.desc} tags={p.tags} index={index} />
+          ))
+        }
+      </div>
+
+      <button
+        id="next-btn"
+        class="absolute right-0 z-30 p-4 bg-brand-dark text-white rounded-full shadow-xl hover:bg-brand-primary transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"><path d="m9 18 6-6-6-6"></path></svg
+        >
+      </button>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Usamos is:global para que estas clases alcancen al componente Card */
+  .card-center {
+    opacity: 1 !important;
+    transform: translateX(0) scale(1.1) !important;
+    z-index: 20;
+    pointer-events: auto !important;
+  }
+  .card-center > div {
+    border-color: #028090 !important;
+    box-shadow: 0 15px 40px rgba(2, 128, 144, 0.3) !important;
+  }
+
+  .card-left {
+    opacity: 0.4 !important;
+    transform: translateX(-80%) scale(0.8) !important;
+    z-index: 10;
+  }
+
+  .card-right {
+    opacity: 0.4 !important;
+    transform: translateX(80%) scale(0.8) !important;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  // Esta función envuelve todo para asegurar que el DOM esté listo
+  function initCarousel() {
+    const cards = document.querySelectorAll(".project-card");
+    const nextBtn = document.getElementById("next-btn");
+    const prevBtn = document.getElementById("prev-btn");
+
+    if (cards.length === 0) return; // Si no hay cards, salimos para evitar errores
+
+    let currentIndex = 0;
+    const total = cards.length;
+
+    function updateCarousel() {
+      cards.forEach((card, i) => {
+        card.classList.remove("card-left", "card-center", "card-right");
+
+        if (i === currentIndex) {
+          card.classList.add("card-center");
+        } else if (i === (currentIndex - 1 + total) % total) {
+          card.classList.add("card-left");
+        } else if (i === (currentIndex + 1) % total) {
+          card.classList.add("card-right");
+        } else {
+          // Las que no son ni centro, ni izq, ni der, se mantienen invisibles
+          card.classList.add("opacity-0");
+        }
+      });
+    }
+
+    nextBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % total;
+      updateCarousel();
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + total) % total;
+      updateCarousel();
+    });
+
+    updateCarousel();
+  }
+
+  // Se ejecuta al cargar la página
+  initCarousel();
+
+  // Si usas ViewTransitions de Astro, descomenta esto:
+  // document.addEventListener('astro:page-load', initCarousel);
+</script>
