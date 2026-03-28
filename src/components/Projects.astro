@@ -2,11 +2,22 @@
 import Card from "./Card.astro";
 
 const projects = [
-  { title: "Proyecto 1", desc: "Descripción...", tags: ["Astro"] },
-  { title: "Proyecto 2", desc: "Descripción...", tags: ["JS"] },
-  { title: "Proyecto 3", desc: "Descripción...", tags: ["React"] },
-  { title: "Proyecto 4", desc: "Descripción...", tags: ["Tailwind"] },
-  { title: "Proyecto 5", desc: "Descripción...", tags: ["CSS"] },
+  {
+    title: "Portfolio Personal",
+    desc: "Como no podía ser de otra manera, mi primer proyecto fue este portfolio personal. Decidí crearlo con Astro y Tailwind CSS para poner en práctica lo aprendido en este novedoso framework, que está ganando popularidad en el mundo del desarrollo web.",
+    url_image: "images_cards/captura-portfolio.png",
+    url_github: "https://github.com/corDEVro/mi-portfolio",
+    url_project: "https://cordevro.netlify.app/",
+    tags: ["Astro", "Tailwind CSS"],
+  },
+  {
+    title: "Ilerna-Homes",
+    desc: "Portal inmobiliario, donde el administrador puede listar su cartera de propiedades. Los usuarios pueden buscar viviendas disponibles y gestionar sus inmuebles favoritos. El proyecto se desarrolló utilizando Bootstrap para el frontend y PHP para el backend, con una base de datos MySQL para almacenar la información.",
+    url_image: "images_cards/captura-ilernahomes.png",
+    url_github: "#",
+    url_project: "#",
+    tags: ["HTML", "CSS", "Bootstrap", "PHP", "MySQL"],
+  },
 ];
 ---
 
@@ -41,7 +52,15 @@ const projects = [
       >
         {
           projects.map((p, index) => (
-            <Card title={p.title} desc={p.desc} tags={p.tags} index={index} />
+            <Card
+              title={p.title}
+              desc={p.desc}
+              url_image={p.url_image}
+              url_github={p.url_github}
+              url_project={p.url_project}
+              tags={p.tags}
+              index={index}
+            />
           ))
         }
       </div>

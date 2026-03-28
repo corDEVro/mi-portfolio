@@ -4,9 +4,13 @@ interface Props {
   desc: string;
   tags: string[];
   index: number;
+  url_image: string;
+  url_github: string;
+  url_project: string;
 }
 
-const { title, desc, tags, index } = Astro.props;
+const { title, desc, tags, index, url_image, url_github, url_project } =
+  Astro.props;
 ---
 
 <div
@@ -19,11 +23,30 @@ const { title, desc, tags, index } = Astro.props;
     <div
       class="aspect-video bg-brand-primary/10 flex items-center justify-center"
     >
-      <span class="text-brand-primary/20 font-black text-4xl italic">CODE</span>
+      <span class="text-brand-primary/20 font-black text-4xl italic">
+        <img src={url_image} alt={title} class="w-full h-full object-cover" />
+      </span>
     </div>
     <div class="p-8">
       <h3 class="text-2xl font-bold text-brand-dark mb-2">{title}</h3>
       <p class="text-brand-dark/70 text-sm mb-4 leading-relaxed">{desc}</p>
+      <div class="flex flex-col gap-1 mb-4">
+        <a
+          href={url_github}
+          target="_blank"
+          class="inline-block text-sm font-bold text-brand-primary hover:underline"
+        >
+          Ver Repositorio en GitHub
+        </a>
+        <a
+          href={url_project}
+          target="_blank"
+          class="inline-block text-sm font-bold text-brand-secondary hover:underline"
+        >
+          Ver Proyecto
+        </a>
+      </div>
+
       <div class="flex flex-wrap gap-2">
         {
           tags.map((tag) => (
